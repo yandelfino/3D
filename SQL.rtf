@@ -1,0 +1,405 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.10586}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\b\f0\fs22\lang9 Banco de dados SQL\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b0 Indice\par
+{\pntext\f1\'B7\tab}Transa\'e7\'f5es\par
+{\pntext\f1\'B7\tab}Views\par
+{\pntext\f1\'B7\tab}Triggers\par
+{\pntext\f1\'B7\tab}Seguran\'e7a\par
+{\pntext\f1\'B7\tab}XML\par
+{\pntext\f1\'B7\tab}Auditoria\par
+{\pntext\f1\'B7\tab}Backup\par
+{\pntext\f1\'B7\tab}Particionamento \par
+{\pntext\f1\'B7\tab}HA\par
+{\pntext\f1\'B7\tab}Monitoramento\par
+
+\pard\sa200\sl276\slmult1\qj\par
+Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Instalar instancia\par
+\par
+\b0 __________________________________________________________________________________\b\par
+Remover instancia \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj StandAlone\par
+
+\pard\sa200\sl276\slmult1\qj\par
+\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Clusterizada \par
+
+\pard\sa200\sl276\slmult1\qj\par
+\b0 Uma inntancia clusterizada \'e9 utilizada para o Failover protect, que nada mais \'e9 do que um DataGuard, portanto um espelhamento da instancia. \par
+Para realizar a desistala\'e7\'e3o de uma instancia clusterizada \'e9 necessario que primeiro os n\'f3s sejam deletados, isso faz com que as instancias caim, e assim deletar o sql server em cada um dos servidores.\par
+\par
+\par
+
+\pard\sa200\sl276\slmult1\qc\par
+
+\pard\sa200\sl276\slmult1\qj __________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Componentes\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Mecanismo de banco de dados (Database Engine)\par
+
+\pard\sa200\sl276\slmult1\qj\'c9 o cora\'e7\'e3o da plataforma SQL Server, ela fornece o mecanismo de banco de dados de alto desempenho e escalonavel utilizado que hospeda os bancos de processamento de dados em tran\'e7asoes de negocioa . Ele tamb\'e9m possui um mecanismo de otimiza\'e7\'e3o de memoria\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Servi\'e7o de an\'e1lise (Analysis services)\par
+
+\pard\sa200\sl276\slmult1\qj Servi\'e7o de processamento analitico online, que trabalha com cubos an\'e1liticos e tabelas. Utilizado para implementa\'e7\'f5es de BI e data mining\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Sevi\'e7os de integra\'e7\'e3o (Integration services)\par
+
+\pard\sa200\sl276\slmult1\qj S\'e3o plataformas de integra\'e7\'e3o para enxtra\'e7\'e3o, transforma\'e7\'e3o e carregamento capaz de organizar movimenta\'e7\'f5es de dados de forma ambigua entre SQL server e Third party\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Servi\'e7os de relatorios (Reporting services)\par
+
+\pard\sa200\sl276\slmult1\qj Servi\'e7o de relatorios baseado em web que proporciona o usuario a retirada dos mesmos;\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Servi\'e7os de dados mestres\par
+
+\pard\sa200\sl276\slmult1\qj Fornece ferramentas e um HUB para o gerenciamento de dados mestres;\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Servi\'e7os de qualidade de dados \par
+
+\pard\sa200\sl276\slmult1\qj Ferramenta de qualidade de dados baseada em conhecimento para limpeza de dados;\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj StreamInsight \par
+
+\pard\sa200\sl276\slmult1\qj Fornece uma plataforma para desenvolvimento de aplicativos que realizam processamento de dados em tempo real;\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Pesquisa de texto completo \par
+
+\pard\sa200\sl276\slmult1\qj\'c9 uma caracteristica de pesquisa por texto\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Replica\'e7\'e3o \par
+
+\pard\sa200\sl276\slmult1\qj Conjunto de tecnologia para replicar dados entre servidores e atender necessidade de redistribui\'e7\'e3o de dados\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj PowerPivot for SharePoint Server\par
+
+\pard\sa200\sl276\slmult1\qj\'c9 uma ferramenta especializada em servi\'e7os de an\'e1lise que o pode ser instalada em uma farm do sharepoint e permite a modelagem de dados tabulares em pastas de trabalho compartilhadas no exel\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj PowerView for SharePoint Server \par
+
+\pard\sa200\sl276\slmult1\qj Componente de servi\'e7o de relatorios do SQL Server integrado ao SharePoint que fornece explora\'e7\'e3o interativa dos dados, apresenta\'e7\'e3o para relatorios intuitivos e improvisados. tamb\'e9m tem no Excel.\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Pastas de cada Banco\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj DataBase Diagrams\par
+
+\pard\sa200\sl276\slmult1\qj Dietorio onde se encontra os Diagramas de Entidade e Relacionamento do banco de dados \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Tables\par
+
+\pard\sa200\sl276\slmult1\qj Diretorio onde ficam localizadas as tabelas do sistema, mais precisamente em file tables onde aparecem as tabelas criadas\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Views\par
+
+\pard\sa200\sl276\slmult1\qj Diretorio onde ficam localizadas as views criadas para as tabelas do banco\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj External Resourses\par
+
+\pard\sa200\sl276\slmult1\qj Pasta onde se colocam informa\'e7\'f5es externas que far\'e3o parte do banco de dados, por exemplo, tabelas em Excel que servir\'e3o para alimentar o banco. Tamb\'e9m \'e9 o ponto para extra\'e7\'e3o de informa\'e7\'f5es com o auxilio de ferramentas externas\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Synonyms \par
+
+\pard\sa200\sl276\slmult1\qj Onde ficam localizadas as referencia\'e7\'f5es para as tabelas do banco, nomes mais curtos, apelidos, o famoso AS\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Programability\par
+
+\pard\sa200\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Service Broker\par
+
+\pard\sa200\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Storage\par
+
+\pard\sa200\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Security\par
+
+\pard\sa200\sl276\slmult1\qj Diretorio onde ficam as regras de seguran\'e7a do banco. Permis\'f5es de acesso podem ser criadas, para usuarios, roles de usuarios, atr\'e1ves de chaves, etc\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Tipos de dados do SQL\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj  Dados Primarios\b0\par
+
+\pard\sa200\sl276\slmult1\qj Arquivo principal do banco de dados, ele contem ponteiros para os servi\'e7os do banco de dados. Estes aquivos possuem uma exten\'e7\'e3o \b .mdf\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Dados secundarios\b0\par
+
+\pard\sa200\sl276\slmult1\qj Arquivos secundarios s\'e3o arquivos de dados, opcionais e definidos pelo usuario para espalhar os dados do banco de dados e proporcionar o crescimento do banco de dados.  A extens\'e3o recomendada para estes arquivos \'e9 \b .ndf\par
+\b0 Um mesmo arquivo .ndf pode ser espalhado em diversos discos a fim de dispinibilizar um Buffer otimizado aos dados tanto na escrita como na leitura \b\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Arquivos de Log\b0\par
+
+\pard\sa200\sl276\slmult1\qj Arquivos de log de transa\'e7\'f5es s\'e3o arquivos que podem ser utilizados para recupera\'e7\'e3o do banco de dados no caso de falhas ou para o suporte de revers\'f5es. Todo banco necessita de pelo menos um arquivo de log. A extens\'e3o recomendada \'e9 \b .ldf\par
+\par
+\b0 __________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\ul\b Curso Udemy\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\ulnone Shared Memory\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Memoria local, joga as informa\'e7\'f5es do banco na memoria RAM para otimizar o tempo de acesso\par
+
+\pard\sa200\sl276\slmult1\qc\b Servi\'e7os do SQL Server\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Full- text filter\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Busca dentro de outros arquivos\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b SQL Server\par
+
+\pard\sa200\sl276\slmult1\qj\b0 O arquivo que corresponde ao banco de dado\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b SQL Server Agent\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Robozinho do banco de dados, o responsavel por realizar os jobs schedulados para o banco \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b SQL Server Analisis Services\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Ferramenta de BI, responsavel pelo processamento de cubos\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b SQL Server browser\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Servi\'e7o que escuta na rede os clients\par
+
+\pard\sa200\sl276\slmult1\qc\b Detalhes Sysdatabase\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj DataBase master\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Armazena a localiza\'e7\'e3o dos arquivos de base de dados dos usuarios | Grava contas de login | Configura\'e7oes do servidor | Informa\'e7\'f5es sobre linked server (Liga\'e7\'e3o entre diferentes servidores de DB) | Inicializa\'e7\'e3o de procedures\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b Model\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Serve de parametro para a database que esta sendo criada \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b MSDB\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Salva as configura\'e7\'f5es de servi\'e7os agendados. Suporte ao server agent | Database email | Historico de metadados | Backup e restore (Historico) | Integration services \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b Tempdb\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Database onde ficam registrados os arquivos temporarios que pertencem \'e0 instancia \par
+\par
+
+\pard\sa200\sl276\slmult1\qc\b Distribui\'e7\'e3o de arquivos e filegroups \par
+
+\pard\sa200\sl276\slmult1\qj\b0 Um Banco de dados pode ter seus arquivos distribuidos em diferentes filegroups, neste caso o arquivo .mdf serve como arquivo principal para inicializa\'e7\'e3o e ponteiro para os outros aquivos que compoem o Database. Os outros arquivos .ndf podem ser distribuidos em diferentes filegroups em um unico HD (paralelismo de SW) ou em diferentes filegroups em HDs distintos (Paralelismo de HW).\par
+Esse metodo \'e9 utilizado para realizar a divis\'e3o de carga como tamb\'e9m para especificar a onde cada tabela deve ser gravada.\par
+
+\pard\sa200\sl276\slmult1\qc\b Instancias SQL Server\par
+
+\pard\sa200\sl276\slmult1\qj\b0 S\'e3o as diferentes instala\'e7\'f5es do SQL Server em um ambiente, \'e9 necessario que exista uma instancia padr\'e3o e as outras que se seguem sejam instancias nomeadas \par
+SQLSRV                (Default)\par
+SQLSRV\\INST1  (Instancia nomeada)\par
+\par
+
+\pard\sa200\sl276\slmult1\qc\b Schemas SQL Server\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Schemas no SQL Server s\'e3o containers logicos que agrupam objetos logicos do SQL Server, esses armazens s\'e3o puramente logicos, n\'e3o tendo rela\'e7\'e3o nenhuma com os arquivos fisicos, portanto, varios arquivos distintos que est\'e3o espalhados em diversos filegroups e diversos HDs podem ou n\'e3o pertencer a um unico \b schema\b0  . Os Schemas define quem \'e9 o proprietario dos arquivos, independente de onde os arquivos est\'e3o armazenados, todos os arquivos logicos (Tabelas, procedures, views, etc), s\'e3o armazenados\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Permisso\'f5es\b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 A partir do momento que voc\'ea consegue criar esquemas diferentes, para diferentes setores do que quer que seja, voce consegue controlar o acesso \'e0 este eschema. Ao inv\'e9s de coceder acesso \'e0 uma unica tabela ou uma unica fun\'e7\'e3o, voce libera o esquema todo. Existe uma serie de permissoes possiveis\par
+
+\pard\li720\sa200\sl276\slmult1\qj\b GRANT \b0 - Conceder acesso \'e0 um Schema\par
+\b REVOK \b0 - Remove esse acesso que foi concedido\b\par
+Deny - \b0 Remove o acesso a algo especifico dentro do Schema que o usuario possui acesso \par
+ \b With Grant \b0 - Da direito  ao acesso da tabela e proporciona heren\'e7a \par
+
+\pard\sa200\sl276\slmult1\qj Tamb\'e9 \'e9 possivel selecionar o tipo de acesso que \'e9 disponibilizado ao usuario... Select, grava\'e7\'e3o\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Na pratica \b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Todo database criado sem um esquema especifico, ser\'e1 posso do DBO (database owner)\tab\par
+
+\pard\sa200\sl276\slmult1\qc\b ACID\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b0 Atomico\b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Indivisivel, at\'e9 o final de sua execu\'e7\'e3o deve ser tratado como algo unico a fim de evitar falhas.\b\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b0 Consistente \b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Da mesma forma que ela foi criada, deve permanecer at\'e9 sua execu\'e7\'e3o ou termino\b\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b0 Isolado\b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 A query deve ser isolado de maneira que durante seu processo n\'e3o pode haver interferencia.\b\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj\b0 Duravel\b\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Os dados devem ser permanentes uma vez que depositados, at\'e9 que os mesmos sejam alterados.\b\par
+\par
+
+\pard\sa200\sl276\slmult1\qc Server Agent\par
+
+\pard\sa200\sl276\slmult1\qj\b0 Utilizado para automatizar a\'e7\'f5es do SQL Server.\b  \b0 Servi\'e7os como identifica\'e7\'e3o de falhas, restart de server automatico, schedula\'e7\'e3o de Jobs,\par
+\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Restri\'e7\'f5es\par
+\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 Null\par
+
+\pard\sa200\sl276\slmult1\b0 Ficar vazio. Not null, nao pode ficar vazio\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Unique \b0\par
+
+\pard\sa200\sl276\slmult1 Restri\'e7\'e3o que n\'e3o permite a repeti\'e7\'e3o dos dados da tabela\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Primary Key\par
+
+\pard\sa200\sl276\slmult1\b0 Identifica\'e7\'e1o unica da tabela\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Foreign Key\b0\par
+
+\pard\sa200\sl276\slmult1 Campo de uma tabela que aponta pra chave primaria de outra tabela\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Check\b0\par
+
+\pard\sa200\sl276\slmult1 Limita a faixa de valores que \'e9 aceita pela tabela ou pela coluna\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Default\b0\par
+
+\pard\sa200\sl276\slmult1 A coluna assume o valor automaticamente caso nenhum valor seja especificado\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Identity\b0\par
+
+\pard\sa200\sl276\slmult1 Auto Icremento \par
+\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Mover banco de dados de sistema\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Movendo os bancos msdb, model e tempodb; \b0\par
+
+\pard\sa200\sl276\slmult1\qj\'c9 nescess\'e1rio que os sevi\'e7os do banco sejam parados, para que o movimenta\'e7\'e3o seja realizada e ap\'f3s essa tarefa e ent\'e3o o servi\'e7o seja reiniciado.\par
+ --pare a instancia do sql server_name\par
+ --mova os arquivos para um nonvo local\par
+ --Reinicie a instancia sql\b  \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\qj Movendo Banco de dados master\b0\par
+
+\pard\sa200\sl276\slmult1\qj Abra o gerenciador de configura\'e7\'e3o do SQL Server\par
+Nas propriedades da instancia, acesse os Startup Parameters\par
+Edite os valores de Startup Parameters para apontar para o local planejado para o banco de dados (-d) e para o arquivo de Log (-I)\par
+Pare a instancia SQL e mova os arquivos  master.mdf e masterlog.ldf\par
+Reinicie a instancia do SQL Server\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Movimentando Database\b0\par
+
+\pard\sa200\sl276\slmult1\qj\b Setando estado do banco \b0\par
+Quaisquer movimenta\'e7\'f5es/altera\'e7\'f5es que possam ser feitas em um database, \'e9 necessario que o banco seja "desligado", tendo seu estado alterado para Offline. Movimenta\'e7\'f5es, copias, opera\'e7\'f5es que envolvam a movimenta\'e7\'e3o do arquivo "fisico" inclusive o drop\par
+\b Atached\par
+\b0 "Atachar" \'e9 a possibilidade de adicionar ou remover um banco \'e0 uma instancia, permitindo assim a movimenta\'e7\'e3o da base de dados sempre que necessario, como por exemplo, recupera\'e7\'e3o de desastres \par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Backup\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 Tipos de backup\par
+
+\pard\sa200\sl276\slmult1\b0 Alguns pontos que s\'e3o vitais e devem ser vistos em backup de banco de dados. Espa\'e7o em disco, Vers\'e3o do banco, Sistema operacional, redirecionamento de usuarios para um novo banco, \par
+
+\pard\li720\sa200\sl276\slmult1\b Full\b0\par
+
+\pard\sa200\sl276\slmult1 Realiza o backup de todos os dados do database e assim torna possivel os outros dois tipos de bkps que s\'e3o realizados para implementar este.\par
+
+\pard\li720\sa200\sl276\slmult1\b Diferential\b0\par
+
+\pard\sa200\sl276\slmult1 Realizado aopos o backup ful, e carrega apenas as altera\'e7\'f5es que foram realizadas. Os backups s\'e3o acumulativos e s\'e3o utilizados com maior frequencia entre os bkps completos.\par
+
+\pard\li720\sa200\sl276\slmult1\b Backup transactinal log\par
+
+\pard\sa200\sl276\slmult1\b0 Backup incremental que armazena as transa\'e7\'f5es ocorridas e consome muito pouco espa\'e7o.\par
+
+\pard\sa200\sl276\slmult1\qc __________________________________________________________________________________\b Restore\par
+
+\pard\sa200\sl276\slmult1\par
+
+\pard\li720\sa200\sl276\slmult1 Full \par
+
+\pard\sa200\sl276\slmult1\line\b0 N\'e3o gerencia o arquivo de log, essa tarefa \'e9 total responsabilidade do administrador. \'c9 possivel o backup \b full\b0 , o \b diferencial \b0 e o de \b log\b0 .\par
+
+\pard\li720\sa200\sl276\slmult1\b Simple\par
+
+\pard\sa200\sl276\slmult1\b0 Gerencia automaticamente o arquivo de log\par
+
+\pard\li720\sa200\sl276\slmult1\b Bulk-Logged \par
+
+\pard\sa200\sl276\slmult1\b0 Salva o minimo possivel no arquivo de log \par
+
+\pard\li720\sa200\sl276\slmult1\b\line Single user \par
+
+\pard\sa200\sl276\slmult1\b0 Derrua qualquer conex\'e3o que esteja estabelecida com o banco de dados, e estabelece o database owner como a unica conecx\'e3o. \par
+
+\pard\li720\sa200\sl276\slmult1\b Norecovery\par
+
+\pard\sa200\sl276\slmult1\b0 Quando o banco \'e9 restaurado em modo norecovery, significa que ele ainda n\'e3o foi totalmente reestabelecido. sendo assim o banco continua offline, o que possibilita a movimenta\'e7\'e3o de arquivos nele\par
+\par
+\b\par
+
+\pard\sa200\sl276\slmult1\qc\par
+
+\pard\sa200\sl276\slmult1\qj\b0 __________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Replica\'e7\'e3o\line\line\b0\par
+
+\pard\sa200\sl276\slmult1\qj\par
+\par
+__________________________________________________________________________________\par
+
+\pard\sa200\sl276\slmult1\qc\b Comandos e Codigos\par
+
+\pard\sa200\sl276\slmult1\qj\ul\b0 Criar tabela\par
+
+\pard\sa200\sl240\slmult1\qj\ulnone CREATE TABLE Sales.Product\par
+ (ProductID INTEGER IDENTITY PRIMARY KEY,\par
+  Nome VARCHAR (20),\par
+  Price DECIMAL NULL);\par
+
+\pard\sa200\sl276\slmult1\qj\ul Alterar dados da tabela\par
+
+\pard\sa200\sl240\slmult1\qj\ulnone ALTER TABLE Sales.Product \par
+ADD Supplier INTEGER NOT NULL\par
+CONSTRAINT def_Supplier DEFAULT 1\par
+
+\pard\sa200\sl276\slmult1\qj\ul Eliminar uma tabela\ulnone\par
+DROP TABLE Sales.Product;\par
+\ul Insercao de dados na tabela\par
+\ulnone INSERT INTO Product\par
+VALUES ("O valor vai ser inserido conforme a posicao na tabela", 17.9, 10);\par
+INSERT INTO Product (Name, Value, ID)\par
+VALUES ("Pode ser feito de maneira especifica", 17.9, 10);\par
+\ul O Famosao da galera\par
+\ulnone SELECT * FROM Product;\par
+
+\pard\sa200\sl240\slmult1\qj FROM Name                                                                                                               \fs16 Select Simples\fs22\par
+\par
+SELECT Name AS Product,                                                                        \fs16 Chamou nome como produto\par
+\fs22                Price * 0.9 as SalesProduct                      \fs16 Chamou Preco, mas ja multiplicado pelo valor especificado\par
+\fs22 FROM Product; \par
+\par
+SELECT Name, Product\par
+From Product                                                                                                               \fs16 Select fazendo filtro\par
+\fs22 WHERE Price = 2;\par
+\par
+\par
+\par
+                                                                                  \par
+\par
+\par
+
+\pard\sa200\sl276\slmult1\qj\par
+}
+ 
